@@ -1,74 +1,68 @@
+/*
+ * ------------------------------------------------------------
+ *  Project : Door Security System using Reed Switch & Buzzer
+ *  Board   : Arduino Uno
+ *  Author  : CodeTheHardware
+ *  YouTube : https://www.youtube.com/@CodeTheHardware
+ *  GitHub  : https://github.com/CTHardware/arduino-reed-switch-door-security-system
+ * ------------------------------------------------------------
+ *  Description:
+ *  A magnetic reed switch detects the door state.
+ *  When the switch is activated, the buzzer turns ON as an alert.
+ *  The switch state is also printed on the Serial Monitor.
+ *
+ *  Connections:
+ *  Reed Switch -> A0 and GND (uses internal pull-up, no resistor needed)
+ *  Buzzer (+)  -> Pin 13
+ *  Buzzer (-)  -> GND
+ * ------------------------------------------------------------
+ */
 
-#define READ_SW A0
-#define BUZZ_PIN 13
+// ---------------- Pin Definitions ----------------
+#define GPIO_SW   A0    // Reed switch input pin (A0 used as digital input)
+#define BUZZ_PIN  13    // Buzzer output pin
 
-void setup() 
+void setup()
 {
+  // Start Serial Monitor for debugging (baud rate: 9600)
   Serial.begin(9600);
 
+  // Configure buzzer pin as output and keep it OFF at startup
   pinMode(BUZZ_PIN, OUTPUT);
   digitalWrite(BUZZ_PIN, LOW);
 
-  pinMode(READ_SW, INPUT_PULLUP);   // IMPORTANT
+  // Enable internal pull-up resistor on the switch pin.
+  // Pin reads HIGH (1) when the switch is open,
+  // and LOW (0) when the switch is closed (connected to GND).
+  pinMode(GPIO_SW, INPUT_PULLUP);
 
   Serial.println("System Started...");
 }
 
-void loop() 
+void loop()
 {
-  int SW_State = digitalRead(READ_SW);
+  // Read the current state of the reed switch
+  int SW_State = digitalRead(GPIO_SW);
 
+  // Print the switch state: 0 = closed/pressed, 1 = open/released
   Serial.print("Switch State: ");
-  Serial.println(SW_State);   // 0 = pressed, 1 = released
+  Serial.println(SW_State);
 
-  if(SW_State == HIGH)
+  if (SW_State == LOW)
   {
-    Serial.println("Switch PRESSED → Buzzer ON");
-
+    // Switch closed -> turn buzzer ON
+    Serial.println("Switch PRESSED -> Buzzer ON");
     digitalWrite(BUZZ_PIN, HIGH);
-    delay(500);
-
-    digitalWrite(BUZZ_PIN, LOW);
-    delay(500);
+    delay(100);   // Adjust as per your product requirement
   }
   else
   {
-    Serial.println("Switch RELEASED → Buzzer OFF");
-
+    // Switch open -> turn buzzer OFF
+    Serial.println("Switch RELEASED -> Buzzer OFF");
     digitalWrite(BUZZ_PIN, LOW);
-    delay(100);
+    delay(100);   // Adjust as per your product requirement
   }
 
+  // Small delay to avoid flooding the Serial Monitor
   delay(200);
 }
-//////////////////////////////////////////////////////////////
-//#define READ_SW A0
-//#define BUZZ_PIN 13
-//
-//void setup() 
-//{
-//  pinMode(BUZZ_PIN, OUTPUT);
-//  digitalWrite(BUZZ_PIN,LOW);
-//
-//  pinMode(READ_SW, INPUT);
-//}
-//
-//void loop() 
-//{
-//  int SW_State = digitalRead(READ_SW);
-//
-//  if(SW_State == LOW)
-//  {
-//    digitalWrite(BUZZ_PIN,HIGH);   // ON (active LOW)
-//    delay(500);
-//    digitalWrite(BUZZ_PIN, LOW);  // OFF
-//    delay(500);
-//  }
-//  else
-//  {
-//    digitalWrite(BUZZ_PIN, LOW);  // OFF
-//    delay(10);
-//  }
-//
-//  delay(5);
-//}
