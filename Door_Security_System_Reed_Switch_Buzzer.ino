@@ -1,6 +1,6 @@
 /*
  * ------------------------------------------------------------
- *  Project : Door Security System using Reed Switch & Buzzer
+ *  Project : Door_Security_System_Reed_Switch_Buzzer.ino
  *  Board   : Arduino Uno
  *  Author  : CodeTheHardware
  *  YouTube : https://www.youtube.com/@CodeTheHardware
