@@ -6,7 +6,7 @@ The reed switch detects the door state, and the buzzer sounds an alert. The swit
 ![Block Diagram](door_security_block_diagram.png)
 
 ## 🎥 Video Tutorial
-Watch the full tutorial on my YouTube channel: [CodeTheHardware](https://www.youtube.com/@CodeTheHardware)
+Watch the full tutorial: [Arduino Door Alarm with Reed Switch & Buzzer](https://youtu.be/dReGwF9I-NE)
 
 ## 🧰 Components Required
 - Arduino Uno
