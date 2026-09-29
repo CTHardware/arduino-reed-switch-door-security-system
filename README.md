@@ -27,9 +27,8 @@ Watch the full tutorial on my YouTube channel: [CodeTheHardware](https://www.you
 > The reed switch uses Arduino's internal pull-up resistor (`INPUT_PULLUP`), so no external resistor is needed.
 
 ## ⚙️ How It Works
-- **Door closed (magnet near switch):** A0 reads HIGH → buzzer OFF
-- **Door opened (magnet moves away):** A0 reads LOW → buzzer ON 🔔
-
+- **Door closed (magnet near switch):** A0 reads LOW (0) → buzzer OFF
+- **Door opened (magnet moves away):** A0 reads HIGH (1) → buzzer ON 🔔
 ## ▶️ How to Use
 1. Click the green **Code** button → **Download ZIP**, then extract it
 2. Open `Door_Security_System_Reed_Switch_Buzzer.ino` in Arduino IDE
