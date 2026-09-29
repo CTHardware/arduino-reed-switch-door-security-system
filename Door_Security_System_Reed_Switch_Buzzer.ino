@@ -48,17 +48,17 @@ void loop()
   Serial.print("Switch State: ");
   Serial.println(SW_State);
 
-  if (SW_State == LOW)
+  if (SW_State == HIGH)
   {
-    // Switch closed -> turn buzzer ON
-    Serial.println("Switch PRESSED -> Buzzer ON");
+    // Switch open (door open) -> turn buzzer ON
+    Serial.println("Switch RELEASED -> Buzzer ON");
     digitalWrite(BUZZ_PIN, HIGH);
     delay(100);   // Adjust as per your product requirement
   }
   else
   {
-    // Switch open -> turn buzzer OFF
-    Serial.println("Switch RELEASED -> Buzzer OFF");
+    // Switch closed (door closed) -> turn buzzer OFF
+    Serial.println("Switch PRESSED -> Buzzer OFF");
     digitalWrite(BUZZ_PIN, LOW);
     delay(100);   // Adjust as per your product requirement
   }
